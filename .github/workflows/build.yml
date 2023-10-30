@@ -27,13 +27,17 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: 17
+          distribution: 'adopt'
 
       # Configurar o Maven 3.8
       - name: Set up Maven 3.8
-        uses: actions/setup-java@v2
-        with:
-          java-version: 17
-          maven-version: 3.8
+        run: |
+          export MAVEN_VERSION=3.8.8  
+          wget -q -O apache-maven.tar.gz https://downloads.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz
+          tar xf apache-maven.tar.gz
+          export M2_HOME=$PWD/apache-maven-$MAVEN_VERSION
+          export MAVEN_HOME=$M2_HOME
+          export PATH=$M2_HOME/bin:$PATH
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
