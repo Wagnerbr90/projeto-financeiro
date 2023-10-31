@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    enabled: false
+    url: jdbc:mysql://localhost:3306/seubanco
+    username: seuusuario
+    password: suasenha
+  devtools:
+    add-properties: true
+  jpa:
+    show-sql: true
+    database: MYSQL
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQLDialect
